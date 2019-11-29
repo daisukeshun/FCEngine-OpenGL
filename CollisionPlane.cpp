@@ -25,7 +25,6 @@ CollisionPlane::CollisionPlane(){
 		}
 	}
 
-
 }
 
 CollisionPlane::CollisionPlane(
@@ -118,4 +117,8 @@ CollisionPlane::CollisionPlane(
 			center.z = (p[i].z - p[0].z) / 2;
 		}
 	}
+}
+
+void CollisionPlane::del(){
+	free(this->p);
 }

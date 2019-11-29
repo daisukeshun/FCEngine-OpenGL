@@ -5,6 +5,7 @@ class vec3{
 	public:
 		float x, y, z, w;
 		float length;
+		float array[3];
 		vec3();
 		vec3(float x, float y);
 		vec3(float x, float y, float z);
@@ -30,6 +31,8 @@ class vec3{
 
 		bool operator==(const vec3& vec);
 		bool operator!=(const vec3& vec);
+
+		float * toArray();
 };
 
 #endif

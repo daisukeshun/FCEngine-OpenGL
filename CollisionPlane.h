@@ -34,6 +34,7 @@ class CollisionPlane{
 				const vec3& p4);
 
 		CollisionPlane();
+		void del();
 
 };
 

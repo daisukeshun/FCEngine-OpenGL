@@ -20,6 +20,9 @@ vec3** loadFromObj(const char * path, int& counter){
 	v = f = 1;
 	char lineHeader[128];
 	int res;
+	char slashCounter = -1;
+	char strWithSlashes[128];
+	long int pos = -1;
 	while (1)
 	{
 		res = fscanf(object, "%s", lineHeader);
@@ -43,10 +46,38 @@ vec3** loadFromObj(const char * path, int& counter){
 			}
 			else if (strcmp(lineHeader, "f") == 0)
 			{
+				if(slashCounter < 0){
+					pos = ftell(object);
+					slashCounter = 0;
+					fscanf(object, "%s", strWithSlashes);
+					fseek(object, pos, SEEK_SET);
+					for(int i = 0; i < 128; i++){
+						if(strWithSlashes[i] == '/'){
+						slashCounter++;
+						}
+					}
+					print(strWithSlashes);
+				}
+				switch(slashCounter){
+					case 0:
+				fscanf(object, "%d %d %d\n",
+					&buf_f[0],
+					&buf_f[1],
+					&buf_f[2]);
+						break;
+					case 1:
 				fscanf(object, "%d/%d %d/%d %d/%d\n",
 					&buf_f[0], &buf_fn[0],
 					&buf_f[1], &buf_fn[1],
 					&buf_f[2], &buf_fn[2]);
+						break;
+					case 2:
+				fscanf(object, "%d//%d %d//%d %d//%d\n",
+					&buf_f[0], &buf_fn[0],
+					&buf_f[1], &buf_fn[1],
+					&buf_f[2], &buf_fn[2]);
+						break;
+				}
 				// ADD buf_f in temp_f
 				temp_f[f - 1] = (int*)calloc(3, sizeof(int));
 				temp_f[f - 1][0] = buf_f[0];

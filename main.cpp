@@ -27,7 +27,9 @@ int main(int argc, char ** argv){
 		exit(1);
 	SDL_GLContext glcontext = SDL_GL_CreateContext(window);
 
-	Mesh mesh("./deer.obj");
+	Mesh mesh("./FinalBaseMesh.obj");
+	mesh.position.set(0.5, -0.5, -4);
+	print(mesh.position);
 
 	SDL_Event event;
 	SDL_bool quit = SDL_FALSE;
@@ -59,10 +61,22 @@ int main(int argc, char ** argv){
 							quit = SDL_TRUE;
 							break;
 						case SDLK_a:
-							angle+=1.0;
+							mesh.position.x-=0.01;
 							break;
 						case SDLK_d:
-							angle-=1.0;
+							mesh.position.x+=0.01;
+							break;
+						case SDLK_w:
+							mesh.position.z+=0.01;
+							break;
+						case SDLK_s:
+							mesh.position.z-=0.01;
+							break;
+						case SDLK_UP:
+							mesh.position.y+=0.02;
+							break;
+						case SDLK_DOWN:
+							mesh.position.y-=0.02;
 							break;
 					}
 				}
@@ -72,6 +86,7 @@ int main(int argc, char ** argv){
 		glFlush();
 		SDL_GL_SwapWindow(window);
 	}
+	mesh.del();
 
 
 	SDL_DestroyWindow(window);

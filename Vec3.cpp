@@ -7,6 +7,9 @@ vec3::vec3(){
 	x=y=z=0;
 	w=1;
 	length=0;
+	array[0] = x;
+	array[1] = y;
+	array[2] = z;
 }
 
 vec3::vec3(float a, float b){
@@ -14,12 +17,18 @@ vec3::vec3(float a, float b){
 	y = b;
 	z = 0;
 	length = sqrt(x*x + y*y + z*z);
+	array[0] = x;
+	array[1] = y;
+	array[2] = z;
 }
 vec3::vec3(float a, float b, float c){
 	x = a;
 	y = b;
 	z = c;
 	length = sqrt(x*x + y*y + z*z);
+	array[0] = x;
+	array[1] = y;
+	array[2] = z;
 }
 
 float vec3::dot(const vec3& vec){
@@ -46,24 +55,36 @@ void vec3::normalize(){
 	y /= length;
 	z /= length;
 	w = length;
+	array[0] = x;
+	array[1] = y;
+	array[2] = z;
 }
 
 void vec3::set(){
 	x=y=z=0;
 	w=1;
 	length=0;
+	array[0] = x;
+	array[1] = y;
+	array[2] = z;
 }
 void vec3::set(float a, float b){
 	x = a;
 	y = b;
 	z = 0;
 	length = sqrt(x*x + y*y + z*z);
+	array[0] = x;
+	array[1] = y;
+	array[2] = z;
 }
 void vec3::set(float a, float b, float c){
 	x = a;
 	y = b;
 	z = c;
 	length = sqrt(x*x + y*y + z*z);
+	array[0] = x;
+	array[1] = y;
+	array[2] = z;
 }
 
 vec3 vec3::operator+(const vec3& vec){
@@ -87,6 +108,9 @@ vec3 vec3::operator+=(const vec3& vec){
    	y+=vec.y;
    	z+=vec.z;
 	length = sqrt(x*x + y*y + z*z);
+	array[0] = x;
+	array[1] = y;
+	array[2] = z;
 	return *this;
 }
 
@@ -95,6 +119,9 @@ vec3 vec3::operator-=(const vec3& vec){
    	y-=vec.y;
    	z-=vec.z;
 	length = sqrt(x*x + y*y + z*z);
+	array[0] = x;
+	array[1] = y;
+	array[2] = z;
 	return *this;
 }
 
@@ -103,6 +130,9 @@ vec3 vec3::operator*=(const float num){
    	y*=num;
    	z*=num;
 	length = sqrt(x*x + y*y + z*z);
+	array[0] = x;
+	array[1] = y;
+	array[2] = z;
 	return *this;
 }
 
@@ -116,6 +146,9 @@ vec3 vec3::operator/=(const float num){
 		fprintf(stderr, "Division by zero!");
 		exit(1);
 	}
+	array[0] = x;
+	array[1] = y;
+	array[2] = z;
 	return *this;
 }
 
@@ -126,4 +159,3 @@ bool vec3::operator==(const vec3& vec){
 bool vec3::operator!=(const vec3& vec){
 	return !(x==vec.x && y==vec.y && z==vec.z);
 }
-
