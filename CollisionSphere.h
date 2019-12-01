@@ -1,3 +1,4 @@
+#pragma once
 #ifndef COLLISION_SPHERE_H
 #define COLLISION_SPHERE_H
 

@@ -1,3 +1,4 @@
+#pragma once
 #ifndef COLLISION_PLANE_H
 #define COLLISION_PLANE_H
 

@@ -1,6 +1,6 @@
+#pragma once
 #ifndef CAMERA_H
 #define CAMERA_H
-#pragma once
 #include "Vec3.h"
 
 class Camera{
@@ -12,8 +12,6 @@ class Camera{
 		Camera(vec3 pos);
 		Camera(float x, float y, float z);
 		Camera(float x, float y);
-}
-
-
+};
 
 #endif

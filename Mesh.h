@@ -1,3 +1,4 @@
+#pragma once
 #ifndef MESH_H
 #define MESH_H
 #include "Vec3.h"
