@@ -9,7 +9,7 @@ class Mesh
 private:
     char* path;
 public:
-    int polygonCount;
+    GLint polygonCount;
 	vec3 pointMin;
 	CollisionPlane * bounds;
 	vec3 pointMax;

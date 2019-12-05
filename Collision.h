@@ -8,50 +8,50 @@
 #include "print.h"
 
 
-float centerDistance(
+GLfloat centerDistance(
 		const CollisionSphere& obj0, 
 		const CollisionSphere& obj1)
 {
-	float x = obj0.center.x - obj1.center.x;
-	float y = obj0.center.y - obj1.center.y;
-	float z = obj0.center.z - obj1.center.z;
+	GLfloat x = obj0.center.x - obj1.center.x;
+	GLfloat y = obj0.center.y - obj1.center.y;
+	GLfloat z = obj0.center.z - obj1.center.z;
 	return sqrt(x*x + y*y + z*z);
 }
 
-float centerDistance(
+GLfloat centerDistance(
 		const CollisionPlane& obj0, 
 		const CollisionPlane& obj1)
 {
-	float x = obj0.center.x - obj1.center.x;
-	float y = obj0.center.y - obj1.center.y;
-	float z = obj0.center.z - obj1.center.z;
+	GLfloat x = obj0.center.x - obj1.center.x;
+	GLfloat y = obj0.center.y - obj1.center.y;
+	GLfloat z = obj0.center.z - obj1.center.z;
 	return sqrt(x*x + y*y + z*z);
 }
 
-float distance(
+GLfloat distance(
 	const CollisionSphere& obj0,
 	const CollisionSphere& obj1)
 {
 	return (centerDistance(obj0, obj1) - (obj0.r + obj1.r));
 }
-float distance(
+GLfloat distance(
 	const vec3& obj0,
 	const vec3& obj1)
 {
-	float x = obj0.x - obj1.x;
-	float y = obj0.y - obj1.y;
-	float z = obj0.z - obj1.z;
+	GLfloat x = obj0.x - obj1.x;
+	GLfloat y = obj0.y - obj1.y;
+	GLfloat z = obj0.z - obj1.z;
 	return sqrt(x*x + y*y + z*z);
 }
 
-float distance(
+GLfloat distance(
 	const CollisionPlane& obj0,
 	const CollisionPlane& obj1)
 {
 	return 0;
 }
 
-int AABB(
+GLint AABB(
 	const CollisionPlane& obj0,
 	const CollisionPlane& obj1)
 {

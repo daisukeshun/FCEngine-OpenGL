@@ -12,7 +12,7 @@ vec3::vec3(){
 	array[2] = z;
 }
 
-vec3::vec3(float a, float b){
+vec3::vec3(GLfloat a, GLfloat b){
 	x = a;
 	y = b;
 	z = 0;
@@ -21,7 +21,7 @@ vec3::vec3(float a, float b){
 	array[1] = y;
 	array[2] = z;
 }
-vec3::vec3(float a, float b, float c){
+vec3::vec3(GLfloat a, GLfloat b, GLfloat c){
 	x = a;
 	y = b;
 	z = c;
@@ -31,7 +31,7 @@ vec3::vec3(float a, float b, float c){
 	array[2] = z;
 }
 
-float vec3::dot(const vec3& vec){
+GLfloat vec3::dot(const vec3& vec){
 	return (x*vec.x + y*vec.y + z*vec.z);
 }
 
@@ -68,7 +68,7 @@ void vec3::set(){
 	array[1] = y;
 	array[2] = z;
 }
-void vec3::set(float a, float b){
+void vec3::set(GLfloat a, GLfloat b){
 	x = a;
 	y = b;
 	z = 0;
@@ -77,7 +77,7 @@ void vec3::set(float a, float b){
 	array[1] = y;
 	array[2] = z;
 }
-void vec3::set(float a, float b, float c){
+void vec3::set(GLfloat a, GLfloat b, GLfloat c){
 	x = a;
 	y = b;
 	z = c;
@@ -94,11 +94,11 @@ vec3 vec3::operator-(const vec3& vec){
 	return vec3(x-vec.x, y-vec.y, z-vec.z);
 }
 
-vec3 vec3::operator*(const float num){
+vec3 vec3::operator*(const GLfloat num){
 	return vec3(x*num, y*num, z*num);
 }
 
-vec3 vec3::operator/(const float num){
+vec3 vec3::operator/(const GLfloat num){
 	return vec3(x/num, y/num, z/num);
 }
 
@@ -125,7 +125,7 @@ vec3 vec3::operator-=(const vec3& vec){
 	return *this;
 }
 
-vec3 vec3::operator*=(const float num){
+vec3 vec3::operator*=(const GLfloat num){
 	x*=num;
    	y*=num;
    	z*=num;
@@ -136,7 +136,7 @@ vec3 vec3::operator*=(const float num){
 	return *this;
 }
 
-vec3 vec3::operator/=(const float num){
+vec3 vec3::operator/=(const GLfloat num){
 	if(num != 0){
 		x/=num;
 		y/=num;

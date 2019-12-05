@@ -6,10 +6,10 @@
 
 class CollisionSphere{
 	public:
-		float r;
+		GLfloat r;
 		vec3 center;
 		CollisionSphere();
-		CollisionSphere(const vec3& vec, const float radius);
+		CollisionSphere(const vec3& vec, const GLfloat radius);
 };
 
 #endif

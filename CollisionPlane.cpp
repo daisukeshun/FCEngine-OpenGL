@@ -28,11 +28,11 @@ CollisionPlane::CollisionPlane(){
 }
 
 CollisionPlane::CollisionPlane(
-		float nx, float ny, float nz,
-		float p0x, float p0y, float p0z,
-		float p1x, float p1y, float p1z,
-		float p2x, float p2y, float p2z,
-		float p3x, float p3y, float p3z)
+		GLfloat nx, GLfloat ny, GLfloat nz,
+		GLfloat p0x, GLfloat p0y, GLfloat p0z,
+		GLfloat p1x, GLfloat p1y, GLfloat p1z,
+		GLfloat p2x, GLfloat p2y, GLfloat p2z,
+		GLfloat p3x, GLfloat p3y, GLfloat p3z)
 {
 	p[0].set(p0x, p0y, p0z);
 	p[1].set(p1x, p1y, p1z);
@@ -65,11 +65,11 @@ CollisionPlane::CollisionPlane(
 		double p2x, double p2y, double p2z,
 		double p3x, double p3y, double p3z)
 {
-	p[0].set((float)p0x, (float)p0y, (float)p0z);
-	p[1].set((float)p1x, (float)p1y, (float)p1z);
-	p[2].set((float)p2x, (float)p2y, (float)p2z);
-	p[3].set((float)p3x, (float)p3y, (float)p3z);
-	normal.set((float)nx, (float)ny, (float)nz);
+	p[0].set((GLfloat)p0x, (GLfloat)p0y, (GLfloat)p0z);
+	p[1].set((GLfloat)p1x, (GLfloat)p1y, (GLfloat)p1z);
+	p[2].set((GLfloat)p2x, (GLfloat)p2y, (GLfloat)p2z);
+	p[3].set((GLfloat)p3x, (GLfloat)p3y, (GLfloat)p3z);
+	normal.set((GLfloat)nx, (GLfloat)ny, (GLfloat)nz);
 
 	for(int i = 0; i < 4; i++){
 		if(p[0].x != p[i].x){

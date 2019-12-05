@@ -10,15 +10,15 @@ class CollisionPlane{
 		vec3 p[4];
 		vec3 normal;
 		vec3 center;
-		float width;
-		float height;
-		float depth;
+		GLfloat width;
+		GLfloat height;
+		GLfloat depth;
 		CollisionPlane(
-				float nx, float ny, float nz,
-				float p0x, float p0y, float p0z,
-				float p1x, float p1y, float p1z,
-				float p2x, float p2y, float p2z,
-				float p3x, float p3y, float p3z);
+				GLfloat nx, GLfloat ny, GLfloat nz,
+				GLfloat p0x, GLfloat p0y, GLfloat p0z,
+				GLfloat p1x, GLfloat p1y, GLfloat p1z,
+				GLfloat p2x, GLfloat p2y, GLfloat p2z,
+				GLfloat p3x, GLfloat p3y, GLfloat p3z);
 
 		CollisionPlane(
 				double nx, double ny, double nz,

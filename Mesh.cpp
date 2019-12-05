@@ -46,7 +46,7 @@ Mesh::Mesh(const char * file){
     }
 
     v = loadFromObj(path, polygonCount);
-    float len = 0;
+    GLfloat len = 0;
     for (int i = 0; i < polygonCount; i++)
     {
         for (int j =  0; j < 3; j++)
@@ -81,7 +81,6 @@ Mesh::Mesh(const char * file){
 			pointMax.z = max(pointMax.z, v[i][j].z);
         }
     }
-
 
     bounds = (CollisionPlane*)calloc(6, sizeof(CollisionPlane));
 	bounds[1].p[0].set(pointMin.x, pointMin.y, pointMin.z);

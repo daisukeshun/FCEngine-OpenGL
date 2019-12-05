@@ -6,21 +6,21 @@
 #include "print.h"
 
 
-vec3** loadFromObj(const char * path, int& counter){
+vec3** loadFromObj(const char * path, GLint& counter){
     FILE* object = NULL;
 	object = fopen(path, "r");
     if(object == NULL){
         printf("File %s is not loaded\n", path);
     }
-	float** temp_v = (float**)calloc(1, sizeof(float*));
-	int** temp_f = (int**)calloc(1, sizeof(int*));
-	float buf_v[3] = { 0 };
-	int	buf_f[3] = { 0 };
-	int	buf_fn[3] = { 0 };
-	int v, f;
+	GLfloat** temp_v = (GLfloat**)calloc(1, sizeof(GLfloat*));
+	GLint** temp_f = (GLint**)calloc(1, sizeof(GLint*));
+	GLfloat buf_v[3] = { 0 };
+	GLint	buf_f[3] = { 0 };
+	GLint	buf_fn[3] = { 0 };
+	GLint v, f;
 	v = f = 1;
 	char lineHeader[128];
-	int res;
+	GLint res;
 	char slashCounter = -1;
 	char strWithSlashes[128];
 	long int pos = -1;
@@ -38,12 +38,12 @@ vec3** loadFromObj(const char * path, int& counter){
 
 				fscanf(object, "%f %f %f\n", &buf_v[0], &buf_v[1], &buf_v[2]);
 				//// ADD buf_v in temp_v
-				temp_v[v - 1] = (float*)calloc(3, sizeof(float));
+				temp_v[v - 1] = (GLfloat*)calloc(3, sizeof(GLfloat));
 				temp_v[v - 1][0] = buf_v[0];
 				temp_v[v - 1][1] = buf_v[1];
 				temp_v[v - 1][2] = buf_v[2];
 				v++;
-				temp_v = (float**)realloc(temp_v, sizeof(float*) * v);
+				temp_v = (GLfloat**)realloc(temp_v, sizeof(GLfloat*) * v);
 			}
 			else if (strcmp(lineHeader, "f") == 0)
 			{

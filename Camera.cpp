@@ -1,23 +1,37 @@
 #include "Camera.h"
 
 Camera::Camera(){
-	pos.set();
+	position.set();
 	look.set();
+	lookVector = position - look;
 	rotation.set();
 }
-Camera::Camera(vec3 pos){
-	this->pos += pos;
+Camera::Camera(vec3 position){
+	this->position += position;
 	look.set();
+	lookVector = position - look;
 	rotation.set();
 }
-Camera::Camera(float x, float y, float z){
-	pos.set(x, y, z);
+Camera::Camera(GLfloat x, GLfloat y, GLfloat z){
+	position.set(x, y, z);
 	look.set();
+	lookVector = position - look;
 	rotation.set();
 }
 
-Camera::Camera(float x, float y){
-	pos.set(x, y, 0);
+Camera::Camera(GLfloat x, GLfloat y){
+	position.set(x, y, 0);
 	look.set();
+	lookVector = position - look;
 	rotation.set();
+}
+
+void Camera::moveTo(GLfloat speed){
+	lookVector = look - position;
+	lookVector += lookVector * speed;
+}
+
+vec3 Camera::getLookDistance(){
+	lookVector = look - position;
+	return lookVector;
 }
