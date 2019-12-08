@@ -159,3 +159,8 @@ bool vec3::operator==(const vec3& vec){
 bool vec3::operator!=(const vec3& vec){
 	return !(x==vec.x && y==vec.y && z==vec.z);
 }
+
+float vec3::getLength(){
+	length = sqrt(x*x + y*y + z*z);
+	return length;
+}

@@ -20,6 +20,7 @@ public:
     void sortPolygons();
     Mesh();
     Mesh(const char * file);
+	void load(const char * file);
     char* getPath();
 	void del();
 };

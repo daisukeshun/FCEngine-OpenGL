@@ -28,8 +28,16 @@ int main(int argc, char ** argv){
 		exit(1);
 	SDL_GLContext glcontext = SDL_GL_CreateContext(window);
 
-	Mesh mesh("./FinalBaseMesh.obj");
-	mesh.position.set(0, 0, -2);
+
+	int meshesSize = 5;
+	Mesh * meshes = (Mesh*)calloc(meshesSize, sizeof(Mesh));
+
+	meshes[0].load("./FinalBaseMesh.obj");
+	meshes[0].position.set(0, 0, -5);
+	meshes[1].load("./deer.obj");
+	meshes[1].position.set(0, 0, -4);
+	meshes[2].load("./track_back.obj");
+	meshes[2].position.set(1, -1, -2);
 
 	SDL_Event event;
 	SDL_bool quit = SDL_FALSE;
@@ -37,37 +45,38 @@ int main(int argc, char ** argv){
 	const Uint8 *state = SDL_GetKeyboardState(NULL);
 	SDL_GetWindowSize(window, &width, &height);
 
-	Init(width, height);
+	Init(120, width, height);
 
 	Camera camera;
 	camera.position.set(0, 0, 0);
-	camera.look.set(0.0, 0, 1.0);
+	camera.rotation.set(0, 0, 0);
 	while(!quit){
-		Display(mesh, camera);
+		Display(meshes, camera, meshesSize);
 		SDL_GL_SwapWindow(window);
 
 		if(state[SDL_SCANCODE_W]){
-			mesh.position.z += 0.1;
 		}
 		if(state[SDL_SCANCODE_S]){
-			mesh.position.z -= 0.1;
 		}
 		if(state[SDL_SCANCODE_A]){
-			mesh.rotation.y -= 1;
 		}
 		if(state[SDL_SCANCODE_D]){
-			mesh.rotation.y += 1;
-		}
-		if(state[SDL_SCANCODE_DOWN]){
 		}
 		if(state[SDL_SCANCODE_UP]){
+			camera.position.x += sinf(camera.rotation.y / 180 * M_PI) * 0.1;
+			camera.position.z -= cosf(camera.rotation.y / 180 * M_PI) * 0.1;
+		}
+		if(state[SDL_SCANCODE_DOWN]){
+			camera.position.x -= sinf(camera.rotation.y / 180 * M_PI) * 0.1;
+			camera.position.z += cosf(camera.rotation.y / 180 * M_PI) * 0.1;
 		}
 		if(state[SDL_SCANCODE_LEFT]){
-			camera.look.x -= 0.02;
+			camera.rotation.y -= 2;
 		}
 		if(state[SDL_SCANCODE_RIGHT]){
-			camera.look.x += 0.02;
+			camera.rotation.y += 2;
 		}
+
 		SDL_PollEvent(&event);
 		switch (event.type){
 			case SDL_QUIT:
@@ -84,7 +93,12 @@ int main(int argc, char ** argv){
 			break;
 		}
 	}
-	mesh.del();
+
+	for(int i = 0; i < meshesSize; i++){
+		meshes[i].del();
+	}
+
+	free(meshes);
 
 
 	SDL_DestroyWindow(window);

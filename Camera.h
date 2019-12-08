@@ -14,7 +14,8 @@ class Camera{
 		Camera(GLfloat x, float y, float z);
 		Camera(GLfloat x, float y);
 		void moveTo(GLfloat speed);
-		vec3 getLookDistance();
+		GLfloat getLookDistance();
+		void rotate(GLfloat x, GLfloat y, GLfloat z);
 };
 
 #endif

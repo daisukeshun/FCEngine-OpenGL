@@ -7,6 +7,7 @@ class vec3{
 	public:
 		GLfloat x, y, z, w;
 		GLfloat length;
+		float getLength();
 		GLfloat array[3];
 		vec3();
 		vec3(GLfloat x, GLfloat y);

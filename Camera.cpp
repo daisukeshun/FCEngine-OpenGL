@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include <math.h>
 
 Camera::Camera(){
 	position.set();
@@ -31,7 +32,15 @@ void Camera::moveTo(GLfloat speed){
 	lookVector += lookVector * speed;
 }
 
-vec3 Camera::getLookDistance(){
+GLfloat Camera::getLookDistance(){
 	lookVector = look - position;
-	return lookVector;
+	return lookVector.length;
+}
+
+void Camera::rotate(GLfloat x, GLfloat y, GLfloat z){
+	rotation.x = x;
+	rotation.y = y;
+	rotation.z = z;
+	look.x = cosf(rotation.y);
+	look.z = cosf(rotation.y);
 }
