@@ -18,23 +18,8 @@ Mesh::Mesh(){
     path = (char*)calloc(1, sizeof(char));
 }
 
-void Mesh::sortPolygons(){
-    for (int i = 0; i < polygonCount; i++)
-    {
-        if(v[i][0].x < v[i][1].x){
-           swap(v[i][0], v[i][1]);
-        } 
-        if(v[i][1].x < v[i][2].x){
-           swap(v[i][1], v[i][2]);
-        }
-        if(v[i][1].x < v[i][2].x){
-           swap(v[i][1], v[i][2]);
-        }
-    }
-    
-}
-
 void Mesh::load(const char * file){
+	scale.set(1,1,1);
     unsigned int i = 0;
     path = (char*)calloc(1, sizeof(char));
     while (file[i] != '\0')
@@ -114,6 +99,7 @@ void Mesh::load(const char * file){
 	bounds[5].p[1].set(pointMin.x, pointMax.y, pointMax.z);
 }
 Mesh::Mesh(const char * file){
+	scale.set(1,1,1);
     unsigned int i = 0;
     path = (char*)calloc(1, sizeof(char));
     while (file[i] != '\0')

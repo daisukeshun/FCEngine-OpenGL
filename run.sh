@@ -1,4 +1,5 @@
 #!/bin/bash
 
-g++ main.cpp -lSDL2 -lGL -lGLU -lm
+clear
+gcc main.c  -lGL -lGLU -lglut -lm
 ./a.out

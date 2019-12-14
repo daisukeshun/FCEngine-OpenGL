@@ -29,15 +29,8 @@ static void Init(
 			0.1f, 10.0f);
 
 	glMatrixMode(GL_MODELVIEW);
-
 	glEnable(GL_DEPTH_TEST);
 
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	float diffusion[] = {1, 1, 1, 1};
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffusion);
-	float ambient[] = {0.2, 0.2, 0.2, 0.2};
-	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
 };
 
 static void Init(
@@ -61,16 +54,9 @@ static void Init(
 		   	(float) width / (float) height,
 			0.1f, 1000.0f);
 
+	glPolygonMode(GL_BACK, GL_LINE);
+
 	glMatrixMode(GL_MODELVIEW);
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-
-	float diffusion[] = {1, 1, 1, 1};
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffusion);
-
-	float ambient[] = {0.2, 0.2, 0.2, 0.2};
-	glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
-
 };
 #endif

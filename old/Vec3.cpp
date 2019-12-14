@@ -164,3 +164,13 @@ float vec3::getLength(){
 	length = sqrt(x*x + y*y + z*z);
 	return length;
 }
+
+vec3 rotateAround(vec3 a, vec3 b){
+	vec3 ret;
+	return ret;
+}
+
+
+
+
+

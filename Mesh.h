@@ -1,27 +1,16 @@
-#pragma once
-#ifndef MESH_H
-#define MESH_H
-#include "Vec3.h"
-#include "Collision.h"
 
-class Mesh
-{
-private:
-    char* path;
-public:
-    GLint polygonCount;
-	vec3 pointMin;
-	CollisionPlane * bounds;
-	vec3 pointMax;
-    vec3 position;
-    vec3 rotation;
-    vec3** v;
-    vec3 * vn;
-    void sortPolygons();
-    Mesh();
-    Mesh(const char * file);
-	void load(const char * file);
-    char* getPath();
-	void del();
-};
-#endif
+#pragma once 
+#include <malloc.h>
+#include "FlatArray.c"
+typedef struct Mesh{
+	unsigned int polygonsCount;
+	Vec3 position;
+	Vec3 rotation;
+	Vec3 * normals;
+	Triangle * polygons;
+} Mesh;
+
+void delMesh(Mesh m){
+	free(m.polygons);
+	free(m.normals);
+}
