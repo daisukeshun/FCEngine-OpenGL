@@ -6,6 +6,8 @@ typedef struct Mesh{
 	unsigned int polygonsCount;
 	Vec3 position;
 	Vec3 rotation;
+	Vec3 axis;
+	GLfloat axisRotation;
 	Vec3 * normals;
 	Triangle * polygons;
 } Mesh;

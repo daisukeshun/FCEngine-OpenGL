@@ -5,81 +5,82 @@
 #include "Display.c"
 #include "Reshape.c"
 #include "Camera.h"
+#include "Keyboard.c"
 
 void timer();
-void keyboard_f(GLubyte, GLint, GLint);
 
-int main(int argc, char ** argv){
-	int width, height;
+int main(int argc, char ** argv){ int width, height;
 	width = 200;
 	height = 200;
 
 	Init();
+
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 	glutInitWindowPosition(300,300);
 	glutInitWindowSize(width, height);
 	glutCreateWindow("GLUT_WINDOW");
 
-
-	glutKeyboardFunc(keyboard_f);
-	glutDisplayFunc(display);
-
 	gCam.speed.x = 0.1;
 	gCam.speed.z = 0.1;
+	gCam.look = createVector(0.f, 0.f, -1.f);
 
-	Mesh m = loadMesh("./deer.obj");
-	unsigned int i;
-	int j;
-	for(i = 0; i < m.polygonsCount; i++){
-		for(j = 0; j < 3; j++){
-			printf("%f %f %f\n", m.polygons->p[j].x, m.polygons->p[j].y, m.polygons->p[j].z);
-		}
-	}
-	/*glutSpecialFunc(keyboard_f);*/
-	delMesh(m);
+	mesh = (Mesh *)calloc(meshesCount, sizeof(Mesh));
+	mesh[0] = loadMesh("./pyramidca.obj");
+	mesh[0].position = createVector(0.f, 0.f, -1.f);
 
+	mesh[1] = loadMesh("./pyramidca.obj");
+	mesh[1].position = createVector(2.f, 0.f, -1.f);
+	mesh[1].rotation = createVector(0.f, 80.f, 0.f);
+	mesh[1].axis = createVector(1.f, 0.f, 1.f);
+
+	glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
+	glutKeyboardFunc(keyDown);
+	glutKeyboardUpFunc(keyUp);
+
+	glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
+
 	glutTimerFunc(0, timer, 0);
 
 	glutMainLoop();
+
+	int i;
+	for(i = 0; i < meshesCount; i++){
+		delMesh(mesh[i]);
+	}
 	return 0;
 }
 
 
 void timer(){
 	glutTimerFunc(1000/60,timer, 0);
-	ry += 2.f;
-	/*rz += 0.2f;
-	rx += 0.2f;
-	gCam.rotation.y += 1;*/
+
+	if(keys[27]){
+		glutLeaveMainLoop();
+	}
+	if(keys['w']){
+		gCam.position.x += gCam.look.x * gCam.speed.x;
+		gCam.position.z += gCam.look.z * gCam.speed.z;
+	}
+	if(keys['s']){
+		gCam.position.x -= gCam.look.x * gCam.speed.x;
+		gCam.position.z -= gCam.look.z * gCam.speed.z;
+	}
+	if(keys['a']){
+		gCam.rotation.y-=2;
+	}
+	if(keys['d']){
+		gCam.rotation.y+=2;
+	}
+	if(keys['z']){
+		mesh[1].axisRotation++;
+		mesh[1].rotation.y++;
+	}
+
 	gCam.look.x = sin(toRadians(gCam.rotation.y));
-	gCam.look.z = -cos(toRadians(gCam.rotation.z));
+	gCam.look.z = -cos(toRadians(gCam.rotation.y));
 
 	glutPostRedisplay();
 }
 
-void keyboard_f(GLubyte key, GLint x, GLint y){
-	switch(key){
-		case 27:
-			glutLeaveMainLoop();
-			break;
-		case 'w':
-			gCam.position.x += gCam.look.x * gCam.speed.x;
-			gCam.position.z += gCam.look.z * gCam.speed.z;
-			break;
-		case 's':
-			gCam.position.x -= gCam.look.x * gCam.speed.x;
-			gCam.position.z -= gCam.look.z * gCam.speed.z;
-			break;
-		case 'a':
-			gCam.rotation.y-=2;
-			break;
-		case 'd':
-			gCam.rotation.y+=2;
-			break;
-		case 'f':
-			glutFullScreenToggle();
-			break;
-	}
-}
