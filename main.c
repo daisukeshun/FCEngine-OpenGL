@@ -30,9 +30,14 @@ int main(int argc, char ** argv){ int width, height;
 	mesh[0].position = createVector(0.f, 0.f, -1.f);
 
 	mesh[1] = loadMesh("./pyramidca.obj");
-	mesh[1].position = createVector(2.f, 0.f, -1.f);
-	mesh[1].rotation = createVector(0.f, 80.f, 0.f);
-	mesh[1].axis = createVector(1.f, 0.f, 1.f);
+	mesh[1].position = createVector(2.f, 0.f, 0.f);
+	mesh[1].rotation = createVector(0.f, 0.f, 0.f);
+	mesh[1].axis = createVector(0.f, 0.f, 5.f);
+
+	mesh[2] = loadMesh("./pyramidca.obj");
+	mesh[2].position = createVector(-2.f, 0.f, 0.f);
+	mesh[2].rotation = createVector(0.f, 0.f, 0.f);
+	mesh[2].axis = createVector(0.f, 0.f, 5.f);
 
 	glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
 	glutKeyboardFunc(keyDown);
@@ -55,6 +60,7 @@ int main(int argc, char ** argv){ int width, height;
 
 void timer(){
 	glutTimerFunc(1000/60,timer, 0);
+	mesh[0].rotation.y++;
 
 	if(keys[27]){
 		glutLeaveMainLoop();
@@ -74,8 +80,12 @@ void timer(){
 		gCam.rotation.y+=2;
 	}
 	if(keys['z']){
-		mesh[1].axisRotation++;
+		mesh[1].axisRotation.y++;
+		mesh[2].axisRotation.y++;
+		/*
 		mesh[1].rotation.y++;
+		mesh[2].rotation.y++;
+		*/
 	}
 
 	gCam.look.x = sin(toRadians(gCam.rotation.y));

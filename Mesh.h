@@ -7,7 +7,7 @@ typedef struct Mesh{
 	Vec3 position;
 	Vec3 rotation;
 	Vec3 axis;
-	GLfloat axisRotation;
+	Vec3 axisRotation;
 	Vec3 * normals;
 	Triangle * polygons;
 } Mesh;

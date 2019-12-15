@@ -32,12 +32,19 @@ void display(){
 	for(i = 0; i < meshesCount; i++){
 		glPushMatrix();
 
-		glRotatef(mesh[i].axisRotation, mesh[i].axis.x, mesh[i].axis.y, mesh[i].axis.z);
+
+		glTranslatef(mesh[i].axis.x, mesh[i].axis.y, mesh[i].axis.z);
+
+		glRotatef(mesh[i].axisRotation.x, 1.0f, 0.0f, 0.0f);
+		glRotatef(mesh[i].axisRotation.y, 0.0f, 1.0f, 0.0f);
+		glRotatef(mesh[i].axisRotation.z, 0.0f, 0.0f, 1.0f);
+
 		glTranslatef(mesh[i].position.x, mesh[i].position.y, mesh[i].position.z);
 		/*model view rotate around x,y,z point on angle*/
 		glRotatef(mesh[i].rotation.x, 1.0f, 0.0f, 0.0f);
 		glRotatef(mesh[i].rotation.y, 0.0f, 1.0f, 0.0f);
 		glRotatef(mesh[i].rotation.z, 0.0f, 0.0f, 1.0f);
+
 		glPushMatrix();
 
 
