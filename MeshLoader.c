@@ -96,7 +96,8 @@ Mesh loadMesh(const char* path)
 	Mesh ret;
 	ret.polygonsCount = f - 1;
 	ret.polygons = (Triangle*)calloc(ret.polygonsCount, sizeof(Triangle));
-	float len = 0, len2;
+
+	printf("%d\n", ret.polygonsCount);
 	for (i = 0; i < f - 1; i++)
 	{
 		for(j = 0; j < 3; j++){
@@ -104,28 +105,24 @@ Mesh loadMesh(const char* path)
 					temp_v[temp_f[i][j]-1][0],
 					temp_v[temp_f[i][j]-1][1],
 					temp_v[temp_f[i][j]-1][2]);
-				len2 = ret.polygons[i].p[j].length;
-				if(len < len2){
-				len = len2;
-			}
-
 		}
 	}
-	printf("len:%f\n", len);
+	printf("model was loaded:%s\n", path);
 
+	/*
 	for (i = 0; i < f - 1; i++)
 	{
 		for(j = 0; j < 3; j++){
 			ret.polygons[i].p[j] = divVec3(ret.polygons[i].p[j], len);
 		}
 	}
+	*/
 	for(i = 0; i < (f - 1); i++){
 		free(temp_f[i]);
 	}
 	for(i = 0; i < (v - 1); i++){
 		free(temp_v[i]);
 	}
-	printf("bufs was deleted\n");
 	fclose(object);
 	return ret;
 }

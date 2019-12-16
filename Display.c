@@ -11,16 +11,9 @@ void drawTriangle(Triangle);
 void display(){
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glMatrixMode(GL_MODELVIEW);
 
-
-	/*model view unit matrix*/
-	glLoadIdentity();
-
-	gluLookAt(
-			gCam.position.x, gCam.position.y, gCam.position.z,
-			gCam.look.x + gCam.position.x, gCam.look.y + gCam.position.y , gCam.look.z + gCam.position.z,
-			0.f, 1.f, 0.f);
 
 	/*
 	glRotatef(gCam.rotation.y, 0.f, 1.f, 0.f);
@@ -30,8 +23,12 @@ void display(){
 	int i;
 	unsigned int j;
 	for(i = 0; i < meshesCount; i++){
-		glPushMatrix();
+	glLoadIdentity();
 
+	gluLookAt(
+		gCam.position.x, gCam.position.y, gCam.position.z,
+		gCam.look.x + gCam.position.x, gCam.look.y + gCam.position.y , gCam.look.z + gCam.position.z,
+		0.f, 1.f, 0.f);
 
 		glTranslatef(mesh[i].axis.x, mesh[i].axis.y, mesh[i].axis.z);
 
@@ -40,27 +37,18 @@ void display(){
 		glRotatef(mesh[i].axisRotation.z, 0.0f, 0.0f, 1.0f);
 
 		glTranslatef(mesh[i].position.x, mesh[i].position.y, mesh[i].position.z);
-		/*model view rotate around x,y,z point on angle*/
+		
 		glRotatef(mesh[i].rotation.x, 1.0f, 0.0f, 0.0f);
 		glRotatef(mesh[i].rotation.y, 0.0f, 1.0f, 0.0f);
 		glRotatef(mesh[i].rotation.z, 0.0f, 0.0f, 1.0f);
 
-		glPushMatrix();
-
-
-
-		/*model view translation*/
-
+		
+		/*model view rotate around x,y,z point on angle*/
 
 		for(j = 0; j < mesh[i].polygonsCount; j++){
 			drawTriangle(mesh[i].polygons[j]);
 		}
-
-		glPopMatrix();
-		glPopMatrix();
 	}
-
-
 	
 
 	glFlush();

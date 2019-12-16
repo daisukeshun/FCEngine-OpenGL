@@ -38,6 +38,10 @@ Vec3 mulVec3(Vec3 a, float num){
 	return createVector(a.x*num, a.y*num, a.z*num);
 }
 
+Vec3 mulVec3Vec3(Vec3 a, Vec3 b){
+	return createVector(a.x * b.x, a.y * b.y, a.z * b.z);
+}
+
 Vec3 divVec3(Vec3 a, float num){
 	return createVector(a.x/num, a.y/num, a.z/num);
 }
