@@ -1,19 +1,14 @@
 #pragma once
-#include "Triangle.h"
-#include "Camera.h"
+#include "Resources.h"
 #include "MeshLoader.c"
 
-Camera gCam;
-GLint meshesCount = 10;
-Mesh * mesh;
-
 void drawTriangle(Triangle);
+
 void display(){
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glMatrixMode(GL_MODELVIEW);
-
 
 	/*
 	glRotatef(gCam.rotation.y, 0.f, 1.f, 0.f);
@@ -23,12 +18,12 @@ void display(){
 	int i;
 	unsigned int j;
 	for(i = 0; i < meshesCount; i++){
-	glLoadIdentity();
+		glLoadIdentity();
 
-	gluLookAt(
-		gCam.position.x, gCam.position.y, gCam.position.z,
-		gCam.look.x + gCam.position.x, gCam.look.y + gCam.position.y , gCam.look.z + gCam.position.z,
-		0.f, 1.f, 0.f);
+		gluLookAt(
+			gCam.position.x, gCam.position.y, gCam.position.z,
+			gCam.look.x + gCam.position.x, gCam.look.y + gCam.position.y , gCam.look.z + gCam.position.z,
+			0.f, 1.f, 0.f);
 
 		glTranslatef(mesh[i].axis.x, mesh[i].axis.y, mesh[i].axis.z);
 
@@ -51,6 +46,7 @@ void display(){
 	}
 	
 
+	glDisable(GL_LIGHT0);
 	glFlush();
 	glutSwapBuffers();
 }

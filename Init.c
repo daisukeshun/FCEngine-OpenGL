@@ -1,8 +1,11 @@
 #include <GL/freeglut.h>
 void Init(){
-	glEnable(GL_DEPTH_TEST);
+
+	glClearColor(0.f, 0.f, 0.f, 0.f);
 	glEnable(GL_COLOR_MATERIAL);
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
+	glEnable(GL_DEPTH_TEST);
+
+	glOrtho(-1.f, 1.f, -1.f, 1.f, -1.f, 1.f);
+
 	glEnable(GL_NORMALIZE);
 }

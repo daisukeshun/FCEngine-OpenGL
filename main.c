@@ -1,11 +1,8 @@
-#include <stdio.h>
-#include "MyMath.h"
-#include <GL/freeglut.h>
 #include "Init.c"
 #include "Display.c"
 #include "Reshape.c"
-#include "Camera.h"
 #include "Keyboard.c"
+#include "MyMath.h"
 
 void timer();
 
@@ -34,8 +31,7 @@ int main(int argc, char ** argv){ int width, height;
 	mesh[5].position = createVector(0.f, 0.2f, 10.f);
 	mesh[5].axis = createVector(0.f, 0.f, 0.f);
 
-	mesh[1] = loadMesh("./wheel.obj");
-	mesh[1].position = createVector(1.f, 0.f, 0.f);
+	mesh[1] = loadMesh("./wheel.obj"); mesh[1].position = createVector(1.f, 0.f, 0.f);
 	mesh[1].axis = createVector(0.f, 0.f, 5.f);
 
 	mesh[2] = loadMesh("./wheel.obj");
@@ -84,6 +80,7 @@ void timer(){
 	int i;
 	for(i = 1; i < 5; i++)
 		mesh[i].rotation.x+=5;
+
 	for(i = 6; i < 8; i++)
 		mesh[i].rotation.x+=5;
 
@@ -104,6 +101,7 @@ void timer(){
 	if(keys['d']){
 		gCam.rotation.y+=2;
 	}
+
 	if(keys['z']){
 		int i;
 		for(i = 0; i < 5; i++){
