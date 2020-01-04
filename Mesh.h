@@ -9,7 +9,7 @@ typedef struct Mesh{
 	Vec3 axis;
 	Vec3 axisRotation;
 	Vec3 * normals;
-	GLfloat scale;
+	Vec3 scale;
 	Triangle * polygons;
 } Mesh;
 
@@ -22,7 +22,7 @@ Mesh * genMeshArray(GLint meshesCount){
 	Mesh * ret = (Mesh *)calloc(meshesCount, sizeof(Mesh));
 	int i;
 	for(i = 0; i < meshesCount; i++){
-		ret[i].scale = 1.f;
+		ret[i].scale = createVector(1.f, 1.f, 1.f);
 		ret[i].position = createVector(0.f, 0.f, 0.f);
 		ret[i].axis = createVector(0.f, 0.f, 0.f);
 		ret[i].axisRotation = createVector(0.f, 0.f, 0.f);
@@ -38,7 +38,7 @@ Mesh scaleMesh(Mesh mesh){
 	unsigned int i, j;
 	for(i = 0; i < mesh.polygonsCount; i++){
 		for(j = 0; j < 3; j++){
-			mesh.polygons[i].p[j] = mulVec3(mesh.polygons[i].p[j], mesh.scale);
+			mesh.polygons[i].p[j] = mulVec3Vec3(mesh.polygons[i].p[j], mesh.scale);
 		}
 	}
 	return mesh;
@@ -50,5 +50,4 @@ void delMeshes(Mesh * mesh, GLint meshesCount){
 		delMesh(mesh[i]);
 	}
 }
-
 

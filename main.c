@@ -56,6 +56,11 @@ int main(int argc, char ** argv){ int width, height;
 	mesh[7] = loadMesh("./wheel.obj");
 	mesh[7].position = createVector(-1.f, -0.5f, 8.5f);
 
+	for(i = 0; i < meshesCount; i++){
+		mesh[i].scale = createVector(1.f, 1.f, 1.f);
+		scaleMesh(mesh[i]);
+	}
+
 
 	glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
 	glutKeyboardFunc(keyDown);

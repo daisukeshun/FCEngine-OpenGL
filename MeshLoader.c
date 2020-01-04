@@ -95,6 +95,7 @@ Mesh loadMesh(const char* path)
 
 	Mesh ret;
 	ret.polygonsCount = f - 1;
+	ret.scale = createVector(1.f, 1.f, 1.f);
 	ret.polygons = (Triangle*)calloc(ret.polygonsCount, sizeof(Triangle));
 
 	printf("%d\n", ret.polygonsCount);
@@ -107,16 +108,7 @@ Mesh loadMesh(const char* path)
 					temp_v[temp_f[i][j]-1][2]);
 		}
 	}
-	printf("model was loaded:%s\n", path);
 
-	/*
-	for (i = 0; i < f - 1; i++)
-	{
-		for(j = 0; j < 3; j++){
-			ret.polygons[i].p[j] = divVec3(ret.polygons[i].p[j], len);
-		}
-	}
-	*/
 	for(i = 0; i < (f - 1); i++){
 		free(temp_f[i]);
 	}

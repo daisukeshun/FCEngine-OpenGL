@@ -7,10 +7,10 @@ void drawTriangle(Triangle);
 void display(){
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glMatrixMode(GL_MODELVIEW);
 
 	/*
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glRotatef(gCam.rotation.y, 0.f, 1.f, 0.f);
 	glTranslatef(-gCam.position.x, -gCam.position.y, -gCam.position.z);
 	*/
